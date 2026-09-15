@@ -1,0 +1,381 @@
+2026-09-15 11:01:02 | ERROR    | chromadb.telemetry.product.posthog | Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2026-09-15 11:01:02 | ERROR    | chromadb.telemetry.product.posthog | Failed to send telemetry event ClientCreateCollectionEvent: capture() takes 1 positional argument but 3 were given
+2026-09-15 11:01:02 | INFO     | app.rag.embeddings | Loading embedding model: all-MiniLM-L6-v2
+2026-09-15 11:01:02 | INFO     | sentence_transformers.SentenceTransformer | Use pytorch device_name: cpu
+2026-09-15 11:01:02 | INFO     | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-09-15 11:01:11 | INFO     | app.rag.vectorstore | Upserted 7 chunks into vector store
+2026-09-15 11:01:11 | INFO     | app.rag.ingest | Ingested 7 chunks from ./sample_data/docs
+2026-09-15 11:09:05 | INFO     | app.data_processing.loader | Saved upload to storage\uploads\heart.csv (35921 bytes)
+2026-09-15 11:09:05 | INFO     | app.data_processing.loader | Loaded dataset heart.csv -> shape=(918, 12)
+2026-09-15 11:09:06 | INFO     | app.data_processing.profiler | Profiled dataset: 918 rows x 12 cols, 0 duplicates
+2026-09-15 11:09:12 | INFO     | app.ml.anomaly | Anomaly detection: 46/918 rows flagged (contamination=0.050)
+2026-09-15 11:09:12 | INFO     | app.agents.analyst_agent | Session 8cf20559-3d19-481f-86f8-10fe0d1b6af9: dataset loaded and auto-EDA complete.
+2026-09-15 11:09:39 | INFO     | app.agents.llm_factory | Using local Ollama model: llama3.2:3b
+2026-09-15 11:09:47 | INFO     | httpx | HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 500 Internal Server Error"
+2026-09-15 11:09:47 | WARNING  | app.workflow.router | Router LLM call failed, falling back to keyword heuristic.
+Traceback (most recent call last):
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\workflow\router.py", line 62, in classify_route
+    decision = structured_llm.invoke(
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\runnables\base.py", line 3020, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\runnables\base.py", line 5343, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 284, in invoke
+    self.generate_prompt(
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 784, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 641, in generate
+    raise e
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 631, in generate
+    self._generate_with_cache(
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 853, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_ollama\chat_models.py", line 644, in _generate
+    final_chunk = self._chat_stream_with_aggregation(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_ollama\chat_models.py", line 545, in _chat_stream_with_aggregation
+    for stream_resp in self._create_chat_stream(messages, stop, **kwargs):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_ollama\chat_models.py", line 517, in _create_chat_stream
+    yield self._client.chat(
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\ollama\_client.py", line 387, in chat
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\ollama\_client.py", line 199, in _request
+    return cls(**self._request_raw(*args, **kwargs).json())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\ollama\_client.py", line 143, in _request_raw
+    raise ResponseError(e.response.text, e.response.status_code) from None
+ollama._types.ResponseError: llama-server process has terminated: exit status 1: ggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 1362493440
+alloc_tensor_range: failed to allocate CPU_REPACK buffer of size 1362493440
+error loading model: unable to allocate CPU_REPACK buffer (status code: 500)
+2026-09-15 11:09:47 | INFO     | app.workflow.graph | Session 8cf20559-3d19-481f-86f8-10fe0d1b6af9 routed to 'data_analysis'
+2026-09-15 11:09:47 | INFO     | app.agents.llm_factory | Using local Ollama model: llama3.2:3b
+2026-09-15 11:09:51 | INFO     | httpx | HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 500 Internal Server Error"
+2026-09-15 11:09:51 | ERROR    | app.api.main | Agent turn failed
+Traceback (most recent call last):
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\api\main.py", line 73, in chat
+    result = analyst_agent.chat(request.session_id, request.message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\agents\analyst_agent.py", line 61, in chat
+    result = run_agent_turn(session_id, message, history=history)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\workflow\graph.py", line 93, in run_agent_turn
+    result_state = branch_graph.invoke({
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\pregel\__init__.py", line 1551, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\pregel\__init__.py", line 1290, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\pregel\runner.py", line 56, in tick
+    run_with_retry(t, retry_policy)
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\pregel\retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\utils\runnable.py", line 385, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\utils\runnable.py", line 167, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\workflow\graph.py", line 51, in agent_node
+    response = llm_with_tools.invoke([{"role": "system", "content": SYSTEM_PROMPT}, *messages])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\runnables\base.py", line 5343, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 284, in invoke
+    self.generate_prompt(
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 784, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 641, in generate
+    raise e
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 631, in generate
+    self._generate_with_cache(
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 853, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_ollama\chat_models.py", line 644, in _generate
+    final_chunk = self._chat_stream_with_aggregation(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_ollama\chat_models.py", line 545, in _chat_stream_with_aggregation
+    for stream_resp in self._create_chat_stream(messages, stop, **kwargs):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_ollama\chat_models.py", line 517, in _create_chat_stream
+    yield self._client.chat(
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\ollama\_client.py", line 387, in chat
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\ollama\_client.py", line 199, in _request
+    return cls(**self._request_raw(*args, **kwargs).json())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\ollama\_client.py", line 143, in _request_raw
+    raise ResponseError(e.response.text, e.response.status_code) from None
+ollama._types.ResponseError: llama-server process has terminated: exit status 1: ggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 1362493440
+alloc_tensor_range: failed to allocate CPU_REPACK buffer of size 1362493440
+error loading model: unable to allocate CPU_REPACK buffer (status code: 500)
+2026-09-15 11:11:30 | INFO     | app.data_processing.loader | Saved upload to storage\uploads\sales_data.csv (25907 bytes)
+2026-09-15 11:11:30 | INFO     | app.data_processing.loader | Loaded dataset sales_data.csv -> shape=(504, 9)
+2026-09-15 11:11:30 | INFO     | app.data_processing.profiler | Profiled dataset: 504 rows x 9 cols, 4 duplicates
+2026-09-15 11:11:31 | INFO     | app.ml.anomaly | Anomaly detection: 26/504 rows flagged (contamination=0.050)
+2026-09-15 11:11:31 | INFO     | app.agents.analyst_agent | Session df750980-eb0d-442f-8655-a0dd8d59a104: dataset loaded and auto-EDA complete.
+2026-09-15 11:11:58 | INFO     | app.agents.llm_factory | Using local Ollama model: llama3.2:3b
+2026-09-15 11:12:03 | INFO     | httpx | HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 500 Internal Server Error"
+2026-09-15 11:12:03 | WARNING  | app.workflow.router | Router LLM call failed, falling back to keyword heuristic.
+Traceback (most recent call last):
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\workflow\router.py", line 62, in classify_route
+    decision = structured_llm.invoke(
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\runnables\base.py", line 3020, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\runnables\base.py", line 5343, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 284, in invoke
+    self.generate_prompt(
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 784, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 641, in generate
+    raise e
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 631, in generate
+    self._generate_with_cache(
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 853, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_ollama\chat_models.py", line 644, in _generate
+    final_chunk = self._chat_stream_with_aggregation(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_ollama\chat_models.py", line 545, in _chat_stream_with_aggregation
+    for stream_resp in self._create_chat_stream(messages, stop, **kwargs):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_ollama\chat_models.py", line 517, in _create_chat_stream
+    yield self._client.chat(
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\ollama\_client.py", line 387, in chat
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\ollama\_client.py", line 199, in _request
+    return cls(**self._request_raw(*args, **kwargs).json())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\ollama\_client.py", line 143, in _request_raw
+    raise ResponseError(e.response.text, e.response.status_code) from None
+ollama._types.ResponseError: llama-server process has terminated: exit status 1: ggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 1362493440
+alloc_tensor_range: failed to allocate CPU_REPACK buffer of size 1362493440
+error loading model: unable to allocate CPU_REPACK buffer (status code: 500)
+2026-09-15 11:12:03 | INFO     | app.workflow.graph | Session df750980-eb0d-442f-8655-a0dd8d59a104 routed to 'data_analysis'
+2026-09-15 11:12:03 | INFO     | app.agents.llm_factory | Using local Ollama model: llama3.2:3b
+2026-09-15 11:12:08 | INFO     | httpx | HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 500 Internal Server Error"
+2026-09-15 11:12:08 | ERROR    | app.api.main | Agent turn failed
+Traceback (most recent call last):
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\api\main.py", line 73, in chat
+    result = analyst_agent.chat(request.session_id, request.message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\agents\analyst_agent.py", line 61, in chat
+    result = run_agent_turn(session_id, message, history=history)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\workflow\graph.py", line 93, in run_agent_turn
+    result_state = branch_graph.invoke({
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\pregel\__init__.py", line 1551, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\pregel\__init__.py", line 1290, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\pregel\runner.py", line 56, in tick
+    run_with_retry(t, retry_policy)
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\pregel\retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\utils\runnable.py", line 385, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\utils\runnable.py", line 167, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\workflow\graph.py", line 51, in agent_node
+    response = llm_with_tools.invoke([{"role": "system", "content": SYSTEM_PROMPT}, *messages])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\runnables\base.py", line 5343, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 284, in invoke
+    self.generate_prompt(
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 784, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 641, in generate
+    raise e
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 631, in generate
+    self._generate_with_cache(
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 853, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_ollama\chat_models.py", line 644, in _generate
+    final_chunk = self._chat_stream_with_aggregation(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_ollama\chat_models.py", line 545, in _chat_stream_with_aggregation
+    for stream_resp in self._create_chat_stream(messages, stop, **kwargs):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_ollama\chat_models.py", line 517, in _create_chat_stream
+    yield self._client.chat(
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\ollama\_client.py", line 387, in chat
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\ollama\_client.py", line 199, in _request
+    return cls(**self._request_raw(*args, **kwargs).json())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\ollama\_client.py", line 143, in _request_raw
+    raise ResponseError(e.response.text, e.response.status_code) from None
+ollama._types.ResponseError: llama-server process has terminated: exit status 1: ggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 1362493440
+alloc_tensor_range: failed to allocate CPU_REPACK buffer of size 1362493440
+error loading model: unable to allocate CPU_REPACK buffer (status code: 500)
+2026-09-15 11:21:14 | INFO     | app.data_processing.loader | Saved upload to storage\uploads\sales_data.csv (25907 bytes)
+2026-09-15 11:21:14 | INFO     | app.data_processing.loader | Loaded dataset sales_data.csv -> shape=(504, 9)
+2026-09-15 11:21:14 | INFO     | app.data_processing.profiler | Profiled dataset: 504 rows x 9 cols, 4 duplicates
+2026-09-15 11:21:21 | INFO     | app.ml.anomaly | Anomaly detection: 26/504 rows flagged (contamination=0.050)
+2026-09-15 11:21:21 | INFO     | app.agents.analyst_agent | Session d021ca05-0a9e-4e15-8407-075326e1338e: dataset loaded and auto-EDA complete.
+2026-09-15 11:27:32 | INFO     | app.data_processing.loader | Saved upload to storage\uploads\sales_data.csv (25907 bytes)
+2026-09-15 11:27:32 | INFO     | app.data_processing.loader | Loaded dataset sales_data.csv -> shape=(504, 9)
+2026-09-15 11:27:32 | INFO     | app.data_processing.profiler | Profiled dataset: 504 rows x 9 cols, 4 duplicates
+2026-09-15 11:27:38 | INFO     | app.ml.anomaly | Anomaly detection: 26/504 rows flagged (contamination=0.050)
+2026-09-15 11:27:38 | INFO     | app.agents.analyst_agent | Session 9120ad90-0c00-4b38-ab3d-0e637886050b: dataset loaded and auto-EDA complete.
+2026-09-15 11:46:46 | INFO     | app.data_processing.loader | Saved upload to storage\uploads\sales_data.csv (25907 bytes)
+2026-09-15 11:46:46 | INFO     | app.data_processing.loader | Loaded dataset sales_data.csv -> shape=(504, 9)
+2026-09-15 11:46:46 | INFO     | app.data_processing.profiler | Profiled dataset: 504 rows x 9 cols, 4 duplicates
+2026-09-15 11:46:51 | INFO     | app.ml.anomaly | Anomaly detection: 26/504 rows flagged (contamination=0.050)
+2026-09-15 11:46:51 | INFO     | app.agents.analyst_agent | Session 1bc5d986-93d3-43ce-9bef-40730158e820: dataset loaded and auto-EDA complete.
+2026-09-15 11:47:29 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 11:47:31 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 11:47:32 | INFO     | app.workflow.graph | Session 1bc5d986-93d3-43ce-9bef-40730158e820 routed to 'data_analysis'
+2026-09-15 11:47:32 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 11:47:33 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 11:47:35 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 11:55:28 | INFO     | app.data_processing.loader | Saved upload to storage\uploads\sales_data.csv (25907 bytes)
+2026-09-15 11:55:28 | INFO     | app.data_processing.loader | Loaded dataset sales_data.csv -> shape=(504, 9)
+2026-09-15 11:55:28 | INFO     | app.data_processing.profiler | Profiled dataset: 504 rows x 9 cols, 4 duplicates
+2026-09-15 11:55:34 | INFO     | app.ml.anomaly | Anomaly detection: 26/504 rows flagged (contamination=0.050)
+2026-09-15 11:55:34 | INFO     | app.agents.analyst_agent | Session ae1b13a5-ef3f-43ab-bc57-8463a7cddfbc: dataset loaded and auto-EDA complete.
+2026-09-15 11:56:32 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 11:56:35 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 11:56:35 | INFO     | app.workflow.graph | Session ae1b13a5-ef3f-43ab-bc57-8463a7cddfbc routed to 'data_analysis'
+2026-09-15 11:56:35 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 11:56:36 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 11:56:40 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 11:58:23 | INFO     | app.data_processing.loader | Saved upload to storage\uploads\PL24-25season.csv (197110 bytes)
+2026-09-15 11:58:23 | INFO     | app.data_processing.loader | Loaded dataset PL24-25season.csv -> shape=(380, 120)
+2026-09-15 11:58:24 | INFO     | app.data_processing.profiler | Profiled dataset: 380 rows x 120 cols, 0 duplicates
+2026-09-15 11:58:25 | INFO     | app.ml.anomaly | Anomaly detection: 19/380 rows flagged (contamination=0.050)
+2026-09-15 11:58:25 | INFO     | app.agents.analyst_agent | Session cf58f037-5cfa-49b3-a7a6-340bdc385e40: dataset loaded and auto-EDA complete.
+2026-09-15 11:59:51 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 11:59:53 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 11:59:53 | INFO     | app.workflow.graph | Session cf58f037-5cfa-49b3-a7a6-340bdc385e40 routed to 'document_retrieval'
+2026-09-15 11:59:53 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 11:59:54 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:00:39 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 12:00:40 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:00:40 | INFO     | app.workflow.graph | Session cf58f037-5cfa-49b3-a7a6-340bdc385e40 routed to 'general'
+2026-09-15 12:00:40 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 12:00:42 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:01:09 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 12:01:10 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:01:10 | INFO     | app.workflow.graph | Session cf58f037-5cfa-49b3-a7a6-340bdc385e40 routed to 'data_analysis'
+2026-09-15 12:01:10 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 12:01:11 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:01:12 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-09-15 12:01:12 | ERROR    | app.api.main | Agent turn failed
+Traceback (most recent call last):
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\api\main.py", line 73, in chat
+    result = analyst_agent.chat(request.session_id, request.message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\agents\analyst_agent.py", line 61, in chat
+    result = run_agent_turn(session_id, message, history=history)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\workflow\graph.py", line 93, in run_agent_turn
+    result_state = branch_graph.invoke({
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\pregel\__init__.py", line 1551, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\pregel\__init__.py", line 1290, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\pregel\runner.py", line 56, in tick
+    run_with_retry(t, retry_policy)
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\pregel\retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\utils\runnable.py", line 385, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langgraph\utils\runnable.py", line 167, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Downloads\ai-data-analyst\app\workflow\graph.py", line 51, in agent_node
+    response = llm_with_tools.invoke([{"role": "system", "content": SYSTEM_PROMPT}, *messages])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\runnables\base.py", line 5343, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 284, in invoke
+    self.generate_prompt(
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 784, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 641, in generate
+    raise e
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 631, in generate
+    self._generate_with_cache(
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_core\language_models\chat_models.py", line 853, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\langchain_openai\chat_models\base.py", line 670, in _generate
+    response = self.client.create(**payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1147, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\miniconda3\envs\ai-analyst\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'Please reduce the length of the messages or completion.', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+2026-09-15 12:01:26 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 12:01:27 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:01:27 | INFO     | app.workflow.graph | Session cf58f037-5cfa-49b3-a7a6-340bdc385e40 routed to 'data_analysis'
+2026-09-15 12:01:27 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 12:01:28 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:01:40 | INFO     | app.data_processing.loader | Saved upload to storage\uploads\PL24-25season.csv (197110 bytes)
+2026-09-15 12:01:40 | INFO     | app.data_processing.loader | Loaded dataset PL24-25season.csv -> shape=(380, 120)
+2026-09-15 12:01:41 | INFO     | app.data_processing.profiler | Profiled dataset: 380 rows x 120 cols, 0 duplicates
+2026-09-15 12:01:42 | INFO     | app.ml.anomaly | Anomaly detection: 19/380 rows flagged (contamination=0.050)
+2026-09-15 12:01:42 | INFO     | app.agents.analyst_agent | Session 0197edd0-c4bd-4ac3-a31c-a7302d68e788: dataset loaded and auto-EDA complete.
+2026-09-15 12:02:03 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 12:02:04 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:02:04 | INFO     | app.workflow.graph | Session 0197edd0-c4bd-4ac3-a31c-a7302d68e788 routed to 'document_retrieval'
+2026-09-15 12:02:04 | INFO     | app.agents.llm_factory | Using Groq model: openai/gpt-oss-120b
+2026-09-15 12:02:07 | INFO     | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:02:43 | INFO     | app.data_processing.loader | Saved upload to storage\uploads\insurance_dataset.csv (55628 bytes)
+2026-09-15 12:02:43 | INFO     | app.data_processing.loader | Loaded dataset insurance_dataset.csv -> shape=(1338, 7)
+2026-09-15 12:02:43 | INFO     | app.data_processing.profiler | Profiled dataset: 1338 rows x 7 cols, 1 duplicates
+2026-09-15 12:02:43 | INFO     | app.ml.anomaly | Anomaly detection: 67/1338 rows flagged (contamination=0.050)
+2026-09-15 12:02:43 | INFO     | app.agents.analyst_agent | Session fe67d39b-7b83-4331-b9a9-4fea9c58cf0b: dataset loaded and auto-EDA complete.
+2026-09-15 12:05:30 | INFO     | app.data_processing.loader | Saved upload to storage\uploads\heart.csv (35921 bytes)
+2026-09-15 12:05:30 | INFO     | app.data_processing.loader | Loaded dataset heart.csv -> shape=(918, 12)
+2026-09-15 12:05:30 | INFO     | app.data_processing.profiler | Profiled dataset: 918 rows x 12 cols, 0 duplicates
+2026-09-15 12:05:30 | INFO     | app.ml.anomaly | Anomaly detection: 46/918 rows flagged (contamination=0.050)
+2026-09-15 12:05:30 | INFO     | app.agents.analyst_agent | Session a856148c-f439-4de3-96ba-a5a21c73704f: dataset loaded and auto-EDA complete.
